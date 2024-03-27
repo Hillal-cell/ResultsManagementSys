@@ -92,8 +92,9 @@
                                 <td>$division</td>
                                 <td>
                                     <div>
-                                        <a class='btn btn-primary' href='./edit' role='button'>Edit</a>
-                                        <a class='btn btn-danger' href='./delete.php?id=$row[id]' role='button'>Delete</a>
+                                        {{-- <a class='btn btn-primary' href='./edit?id={{ $row['id'] }}' role='button'>Edit</a> --}}
+                                        <a class='btn btn-primary' href='/edit?id=$row[id]' role='button'>Edit</a>
+                                        <a class='btn btn-danger' href='/remove?id=$row[id]' role='button'>Delete</a>
                                     </div>
                                 </td>
                             </tr>

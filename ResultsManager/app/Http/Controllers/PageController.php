@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 
 class PageController extends Controller
@@ -51,10 +52,16 @@ class PageController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function editResults()
+    public function editResults(Request $request)
     {
-        
-        return view('pages.edit');
+        // Retrieve the ID from the query parameters
+        $id = $request->query('id');
+
+        // Use the $id parameter as needed
+        // For example, you can directly access it in your method
+        $idValue = $id;
+
+        return view('pages.edit',['id' => $idValue]);
     }
 
     /**
@@ -68,12 +75,16 @@ class PageController extends Controller
     }
 
     /**
-     * Display upgrade page
+     * Display delete page
      *
      * @return \Illuminate\View\View
      */
-    public function upgrade()
+    public function deleteResults(Request $request)
     {
-        return view('pages.upgrade');
+        $id = $request->query('id');
+
+        $idValue = $id;
+
+        return view('pages.remove',['id' => $idValue]);
     }
 }

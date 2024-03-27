@@ -26,10 +26,10 @@
         </ul>
         <div class="copyright">
             &copy; {{ now()->year }} {{ __('made with') }} Expertise {{ __('by') }}
-            {{-- To do can put your github link in the href --}}
-            <a href="" target="_blank">{{ __('Hillal ') }}</a> &amp;
-            {{-- To do can put your github link in the href --}}
-            <a href="" target="_blank">{{ __('Wilson') }}</a> {{ __('for a better results management system') }}.
+            
+            <a href="https://github.com/Hillal-cell" target="_blank">{{ __('Hillal ') }}</a> &amp;
+            
+            <a href="https://github.com/ntuwilson" target="_blank">{{ __('Wilson') }}</a> {{ __('for a better results management system') }}.
         </div>
     </div>
 </footer>

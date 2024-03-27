@@ -28,10 +28,11 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('results', ['as' => 'pages.icons', 'uses' => 'App\Http\Controllers\PageController@icons']);
 		Route::get('maps', ['as' => 'pages.maps', 'uses' => 'App\Http\Controllers\PageController@maps']);
 		Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
-		Route::get('edit', ['as' => 'pages.edit', 'uses' => 'App\Http\Controllers\PageController@editResults']);
+		Route::get('edit/{id}', ['as' => 'pages.edit', 'uses' => 'App\Http\Controllers\PageController@editResults']);
 		Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
+		Route::get('remove/{id}', ['as' => 'pages.delete', 'uses' => 'App\Http\Controllers\PageController@deleteResults']);
 		Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
-		Route::get('upgrade', ['as' => 'pages.upgrade', 'uses' => 'App\Http\Controllers\PageController@upgrade']);
+		
 });
 
 Route::group(['middleware' => 'auth'], function () {
