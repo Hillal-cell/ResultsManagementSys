@@ -1,0 +1,1 @@
+<?php echo"<h2>This is the edits page .</h2>";

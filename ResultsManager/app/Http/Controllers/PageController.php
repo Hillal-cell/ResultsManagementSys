@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 class PageController extends Controller
 {
     /**
@@ -11,7 +12,8 @@ class PageController extends Controller
      */
     public function icons()
     {
-        return view('pages.icons');
+        
+        return view('pages.results');
     }
 
     /**
@@ -49,9 +51,10 @@ class PageController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function rtl()
+    public function editResults()
     {
-        return view('pages.rtl');
+        
+        return view('pages.edit');
     }
 
     /**

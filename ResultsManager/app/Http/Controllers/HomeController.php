@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Mark;
 
 class HomeController extends Controller
 {
@@ -21,6 +22,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+
+        $marks = Mark::all();
+        return view('dashboard',compact('marks'));
     }
 }
