@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+	 
     return view('welcome');
 });
+
+
 
 Auth::routes();
 
@@ -30,7 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
 		Route::get('edit/{id}', ['as' => 'pages.edit', 'uses' => 'App\Http\Controllers\PageController@editResults']);
 		Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
-		Route::get('remove/{id}', ['as' => 'pages.delete', 'uses' => 'App\Http\Controllers\PageController@deleteResults']);
+		/*Route::get('remove/{id}', ['as' => 'pages.delete', 'uses' => 'App\Http\Controllers\PageController@deleteResults']);*/
+		Route::get('remove/{id}', ['as' => 'pages.remove', 'uses' => 'App\Http\Controllers\PageController@deleteResults']);
 		Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
 		
 });

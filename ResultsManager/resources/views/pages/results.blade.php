@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => __('Icons'), 'pageSlug' => 'icons'])
+@extends('layouts.app', ['page' => __('Marks'), 'pageSlug' => 'marks'])
 
 @section('content')
 <div class="row">
@@ -79,9 +79,7 @@
                     // Output table row with total and division
                     
                       echo "
-                          
                             <tr>
-                              
                                 <td>$row[id]</td>
                                 <td>$row[name]</td>
                                 <td>$row[english]</td>
@@ -92,14 +90,11 @@
                                 <td>$division</td>
                                 <td>
                                     <div>
-                                        {{-- <a class='btn btn-primary' href='./edit?id={{ $row['id'] }}' role='button'>Edit</a> --}}
-                                        <a class='btn btn-primary' href='/edit?id=$row[id]' role='button'>Edit</a>
-                                        <a class='btn btn-danger' href='/remove?id=$row[id]' role='button'>Delete</a>
+                                        <a class=\"btn btn-primary\" href='" . route('pages.edit', ['id' => $row['id']]) . "' role=\"button\">Edit</a>
+                                        <a class='btn btn-danger' href='" . route('pages.remove', ['id' => $row['id']]) . "' role='button'>Delete</a>
                                     </div>
                                 </td>
-                            </tr>
-                      
-                      ";  
+                            </tr>";  
                     
                 }
                 ?>

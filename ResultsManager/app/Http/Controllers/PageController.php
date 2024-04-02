@@ -52,16 +52,11 @@ class PageController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function editResults(Request $request)
+    public function editResults(Request $request,$id)
     {
-        // Retrieve the ID from the query parameters
-        $id = $request->query('id');
+    
 
-        // Use the $id parameter as needed
-        // For example, you can directly access it in your method
-        $idValue = $id;
-
-        return view('pages.edit',['id' => $idValue]);
+        return view('pages.edit',['id' => $id]);
     }
 
     /**
@@ -79,12 +74,10 @@ class PageController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function deleteResults(Request $request)
+    public function deleteResults(Request $request,$id)
     {
-        $id = $request->query('id');
+        
 
-        $idValue = $id;
-
-        return view('pages.remove',['id' => $idValue]);
+        return view('pages.remove',['id' => $id]);
     }
 }

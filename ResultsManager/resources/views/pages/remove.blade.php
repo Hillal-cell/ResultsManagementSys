@@ -1,12 +1,12 @@
-@extends('layouts.app', ['page' => __('Delete'), 'pageSlug' => 'delete'])
+
+@extends('layouts.app', ['page' => __('REMOVE'), 'pageSlug' => 'remove'])
 
 @section ('content')
 
 
-<h1>Successfully deleted the student with id :{{$id}}</h1>
 
+
+This is the remove page with id : {{$id}}
 @endsection 
-
-
 
 
