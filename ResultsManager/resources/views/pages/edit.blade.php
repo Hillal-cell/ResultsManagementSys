@@ -5,30 +5,41 @@
 <div class="container">
     <h3 style="color:blue">Edit Student Marks</h3>
 
-        @if ($errors->any())
-            <div class="alert alert-danger" role="alert">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            <script>
-        // Automatically close the error alert after 5 seconds
-        setTimeout(function() {
-            $('#error-alert').fadeOut('slow');
-        }, 5000);
-    </script>
+          @if ($errors->any())
+        <div id="error-alert" class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+
+        <script>
+            // Automatically close the error alert after 5 seconds
+            setTimeout(function () {
+                $('#error-alert').fadeOut('slow');
+            }, 2000);
+        </script>
         @endif
 
-        @if (session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-             setTimeout(function() {
-            $('#error-alert').fadeOut('slow');
-        }, 5000);
+        @php
+        $successMessage = session('success');
+        // Remove the success message from the session to prevent it from reappearing on page reload
+        session()->forget('success');
+        @endphp
+
+        @if ($successMessage)
+        <div id="success-alert" class="alert alert-success">
+            {{ $successMessage }}
+        </div>
+        <script>
+            // Automatically close the success alert after 5 seconds
+            setTimeout(function () {
+                $('#success-alert').fadeOut('slow');
+            }, 2000);
+        </script>
         @endif
+
 
     <form method="post">
         @csrf
