@@ -30,6 +30,9 @@
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
+         setTimeout(function() {
+            $('#error-alert').fadeOut('slow');
+        }, 5000);
     @endif
 
 
