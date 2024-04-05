@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Student;
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Log;
 
 class PageController extends Controller
 {
@@ -14,6 +17,19 @@ class PageController extends Controller
     public function icons()
     {
         
+
+         // Check if there are any flash messages
+        if(session()->has('error')) {
+            // Flash error message to the session
+            session()->flash('error', session('error'));
+        }
+
+        if(session()->has('success')) {
+            // Flash success message to the session
+            session()->flash('success', session('success'));
+        }
+    
+        // Return view
         return view('pages.results');
     }
 
@@ -61,7 +77,7 @@ class PageController extends Controller
 
             // Check if the student record exists
             if (!$student) {
-                return redirect()->route('pages.results')->with('error', 'Student not found.');
+                return redirect()->route('pages.icons')->with('error', 'Student not found.');
             }
 
             // Return the edit form view with the student data
@@ -84,14 +100,18 @@ class PageController extends Controller
 
             // Check if the student record exists
             if (!$student) {
-                return redirect()->route('pages.results')->with('error', 'Student not found.');
+                return redirect()->route('pages.icons')->with('error', 'Student not found.');
             }
 
             // Update the student record with the data from the form fields
             $student->update($validatedData);
 
+
+             // Log the message that the student record was not updated
+            //Log::info('Student record with ID ' . $id . ' was not updated.');
+
             // Redirect back to the results page with a success message
-            return redirect()->route('pages.results')->with('success', 'Student record updated successfully.');
+            return redirect()->route('pages.icons')->with('success', 'Student record updated successfully.');
         }
     }
     /**
@@ -103,6 +123,7 @@ class PageController extends Controller
     {
         return view('pages.typography');
     }
+
 
     /**
      * Display delete page
