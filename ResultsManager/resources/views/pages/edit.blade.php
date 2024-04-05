@@ -13,6 +13,12 @@
                     @endforeach
                 </ul>
             </div>
+            <script>
+        // Automatically close the error alert after 5 seconds
+        setTimeout(function() {
+            $('#error-alert').fadeOut('slow');
+        }, 5000);
+    </script>
         @endif
 
         @if (session('success'))

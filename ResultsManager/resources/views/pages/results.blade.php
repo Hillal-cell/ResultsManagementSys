@@ -1,9 +1,38 @@
 @extends('layouts.app', ['page' => __('Marks'), 'pageSlug' => 'marks'])
 
 @section('content')
+
+
+
 <div class="row">
     <div class="container my-5">
         <h2>Students</h2>
+
+
+         @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+
+        <script>
+        // Automatically close the error alert after 5 seconds
+        setTimeout(function() {
+            $('#error-alert').fadeOut('slow');
+        }, 5000);
+    </script>
+    @endif
+
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
         <a class="btn btn-primary" href="./create.php" role="button">Insert New Student With Marks</a>
         <br>
 
