@@ -33,8 +33,9 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('notifications', ['as' => 'pages.notifications', 'uses' => 'App\Http\Controllers\PageController@notifications']);
 		Route::get('edit/{id}', ['as' => 'pages.edit', 'uses' => 'App\Http\Controllers\PageController@editResults']);
 		Route::get('tables', ['as' => 'pages.tables', 'uses' => 'App\Http\Controllers\PageController@tables']);
-		 Route::post('edit/{id}', ['as' => 'pages.update', 'uses' => 'App\Http\Controllers\PageController@editResults']); //  line for POST requests
-		Route::get('create', ['as' => 'pages.create', 'uses' => 'App\Http\Controllers\PageController@createStudent']);
+		Route::post('edit/{id}', ['as' => 'pages.update', 'uses' => 'App\Http\Controllers\PageController@editResults']); //  line for POST requests
+		Route::get('create', ['as' => 'pages.create', 'uses' => 'App\Http\Controllers\PageController@addStudentMarks']);
+		Route::post('store', ['as' => 'pages.store', 'uses' => 'App\Http\Controllers\PageController@addStudentMarks']);  //line for post request
 		Route::get('remove/{id}', ['as' => 'pages.remove', 'uses' => 'App\Http\Controllers\PageController@deleteResults']);
 		Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
 		
