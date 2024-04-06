@@ -44,7 +44,7 @@
         @endif
 
 
-        <a class="btn btn-primary" href="./create.php" role="button">Insert New Student With Marks</a>
+        <a class="btn btn-primary" href="{{route('pages.create')}}" role="button">Insert New Student With Marks</a>
         <br>
 
         <table class="table text-center">
