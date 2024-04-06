@@ -108,7 +108,7 @@ class PageController extends Controller
 
 
              // Log the message that the student record was not updated
-            //Log::info('Student record with ID ' . $id . ' was not updated.');
+            //Log::info('Student record with ID ' . $id . ' was  updated.');
 
             // Redirect back to the results page with a success message
             return redirect()->route('pages.icons')->with('success', 'Student record updated successfully.');
@@ -136,4 +136,48 @@ class PageController extends Controller
 
         return view('pages.remove',['id' => $id]);
     }
+
+    //function 
+
+
+    public function addStudentMarks(Request $request)
+    {
+        // If the request is a GET request, render the edit form
+        if ($request->isMethod('get')) {
+           
+           return view('pages.create');
+
+            
+        }
+
+        // If the request is a POST request, handle the form submission
+        if ($request->isMethod('post')) {
+            $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'english' => 'required|numeric',
+            'sst' => 'required|numeric',
+            'maths' => 'required|numeric',
+            'science' => 'required|numeric',
+        ]);
+
+       
+
+        // Save the data
+        $student = new Student();
+        $student->name = $validatedData['name'];
+        $student->english = $validatedData['english'];
+        $student->sst = $validatedData['sst'];
+        $student->maths = $validatedData['maths'];
+        $student->science = $validatedData['science'];
+        $student->save();
+
+        //Log::info('Student successfully added');
+
+        // Optionally, you can redirect the user to another page after saving the data
+        return redirect()->route('pages.icons')->with('success', 'Student created successfully.');
+        }
+    }
+
+
+    
 }
