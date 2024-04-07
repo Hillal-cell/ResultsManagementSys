@@ -1,7 +1,7 @@
+
 @extends('layouts.app', ['page' => __('Marks'), 'pageSlug' => 'marks'])
 
 @section('content')
-
 
 
 <div class="row">
@@ -44,8 +44,17 @@
         @endif
 
 
-        <a class="btn btn-primary" href="{{route('pages.create')}}" role="button">Insert New Student With Marks</a>
-        <br>
+       <div class="row">
+            <div class="col-md-6">
+                <a class="btn btn-primary m-3" href="{{ route('pages.create') }}" role="button">Insert New Student With Marks</a>
+            </div>
+            <div class="col-md-6 text-md-right">
+                <a class="btn btn-secondary m-3" href="" role="button">Upload Student Data Sheet</a>
+            </div>
+        </div>
+
+
+
 
         <table class="table text-center">
             <thead class="thead-light">
@@ -57,8 +66,11 @@
                     <th>MATHS</th>
                     <th>SCIENCE</th>
                     <th>TOTAL</th>
+                    <th>AVERAGE</th>
+                    <th>AGGREGATE</th>
                     <th>DIVISION</th>
                     <th>Action</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -75,35 +87,8 @@
                     die("Connection to the database failed : " . mysqli_connect_error());
                 }
 
-                // Define function to calculate total
-                function calculateTotal($english, $sst, $maths, $science) {
-                    return $english + $sst + $maths + $science;
-                }
-
-                // Define function to calculate division
-                function calculateDivision($english, $sst, $maths, $science) {
-                    $average = ($english + $sst + $maths + $science) / 4;
-                    if ($average >= 90) {
-                        return 1;
-                    } elseif ($average >= 80) {
-                        return 2;
-                    } elseif ($average >= 75) {
-                        return 3;
-                    } elseif ($average >= 65) {
-                        return 4;
-                    } elseif ($average >= 60) {
-                        return 5;
-                    } elseif ($average >= 50) {
-                        return 6;
-                    } elseif ($average >= 40) {
-                        return 7;
-                    } elseif ($average >= 35) {
-                        return 8;
-                    } else {
-                        return 9;
-                    }
-                }
-
+                require_once app_path('functions.php');
+               
                 $sql = "SELECT id,name,english,sst,maths,science FROM students";
                 $result = mysqli_query($conn, $sql);
 
@@ -114,8 +99,9 @@
                 while ($row = mysqli_fetch_array($result)) {
                     // Calculate total and division
                     $total = calculateTotal($row['english'], $row['sst'], $row['maths'], $row['science']);
-                    $division = calculateDivision($row['english'], $row['sst'], $row['maths'], $row['science']);
-                    
+                    $average = calculateAverage($row['english'], $row['sst'], $row['maths'], $row['science']);
+                    $aggregate = totalAggregate($row['english'], $row['sst'], $row['maths'], $row['science']);
+                    $division = returnDivision($row['english'], $row['sst'], $row['maths'], $row['science']);
                     // Output table row with total and division
                     
                       echo "
@@ -127,6 +113,8 @@
                                 <td>$row[maths]</td>
                                 <td>$row[science]</td>
                                 <td>$total</td>
+                                <td>$average</td>
+                                <td>$aggregate</td>
                                 <td>$division</td>
                                 <td>
                                     <div>
