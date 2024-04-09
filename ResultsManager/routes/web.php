@@ -37,6 +37,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('create', ['as' => 'pages.create', 'uses' => 'App\Http\Controllers\PageController@addStudentMarks']);
 		Route::post('store', ['as' => 'pages.store', 'uses' => 'App\Http\Controllers\PageController@addStudentMarks']);  //line for post request
 		Route::get('remove/{id}', ['as' => 'pages.remove', 'uses' => 'App\Http\Controllers\PageController@deleteResults']);
+		Route::post('results',['as'=>'pages.icons','uses' => 'App\Http\Controllers\StudentsController@upload']);  //line for uploading file with data set
 		Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
 		
 });
