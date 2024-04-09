@@ -107,7 +107,7 @@ class PageController extends Controller
             $student->update($validatedData);
 
 
-             // Log the message that the student record was not updated
+            // Log the message that the student record was not updated
             //Log::info('Student record with ID ' . $id . ' was  updated.');
 
             // Redirect back to the results page with a success message
