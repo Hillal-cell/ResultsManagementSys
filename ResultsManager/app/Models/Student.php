@@ -17,5 +17,7 @@ class Student extends Model
      * @var array
      */
 
+     protected $primaryKey ='id';
+
     protected $fillable = ['name', 'english', 'sst','maths', 'science'];
 }
