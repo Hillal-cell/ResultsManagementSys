@@ -3,7 +3,7 @@
 @section ('content')
 
 <div class="container">
-    <h3 style="color:blue">Edit Student Marks</h3>
+    <h3 style="color:blue">Edit Student Info and Marks</h3>
 
           @if ($errors->any())
         <div id="error-alert" class="alert alert-danger" role="alert">
