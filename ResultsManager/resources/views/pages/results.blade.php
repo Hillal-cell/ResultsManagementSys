@@ -48,10 +48,21 @@
             <div class="col-md-6">
                 <a class="btn btn-primary m-3" href="{{ route('pages.create') }}" role="button">Insert New Student With Marks</a>
             </div>
-            <div class="col-md-6 text-md-right">
-                <a class="btn btn-secondary m-3" href="" role="button">Upload Student Data Sheet</a>
-            </div>
+
+            
+                
+                     <div class="col-md-6 text-md-right">
+                        <form action="{{route('pages.icons')}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <input type="file" class="form-control d-none" id="csv_file_input" name="upload-file" accept=".csv">
+                            <button type="button" class="btn btn-success" id="choose_csv_button">Choose CSV File</button>
+                            <button type="submit" class="btn btn-success d-none" id="upload_csv_button">Upload CSV</button>
+                        </form>
+                    </div>
+            
+           
         </div>
+
 
 
 
@@ -130,4 +141,21 @@
         </table>
     </div>
 </div>
+ <script>
+        document.getElementById("choose_csv_button").addEventListener("click", function() {
+            document.getElementById("csv_file_input").click();
+        });
+
+        document.getElementById("csv_file_input").addEventListener("change", function() {
+            const fileName = this.value.split("\\").pop();
+            if (fileName) {
+                document.getElementById("upload_csv_button").classList.remove("d-none");
+                document.getElementById("choose_csv_button").classList.add("d-none");
+            }
+        });
+
+
+        
+    </script>
+
 @endsection
