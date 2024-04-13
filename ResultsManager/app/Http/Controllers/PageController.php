@@ -132,9 +132,16 @@ class PageController extends Controller
      */
     public function deleteResults(Request $request,$id)
     {
-        
+         // Retrieve the student record by ID
+            $student = Student::find($id);
 
-        return view('pages.remove',['id' => $id]);
+            if($student){
+                $student->delete();
+                return redirect()->route('pages.icons')->with('success', 'Student record deleted successfully.');
+            }
+            else{
+                return redirect()->route('pages.icons')->with('error', 'Student not found.');
+            }
     }
 
     //function 
