@@ -37,11 +37,11 @@ class HomeController extends Controller
    
     
     // Extracting marks for each subject
-$subjectMarks = $students->map(function ($student) use ($subjectNames) {
-    return collect($subjectNames)->map(function ($subject) use ($student) {
-        return $student->$subject;
+    $subjectMarks = $students->map(function ($student) use ($subjectNames) {
+        return collect($subjectNames)->map(function ($subject) use ($student) {
+            return $student->$subject;
+        });
     });
-});
 
         return view('dashboard', compact('students', 'totalStudents', 'subjectNames', 'subjectMarks'));
     }
