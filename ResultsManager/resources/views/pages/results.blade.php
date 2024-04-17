@@ -63,11 +63,7 @@
            
         </div>
 
-
-
-
-
-        <table class="table text-center">
+        <table class="table text-center" id="marks-table">
             <thead class="thead-light">
                 <tr>
                     <th>ID</th>
