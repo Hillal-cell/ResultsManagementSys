@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Chart_01Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-	 
+
     return view('welcome');
 });
 
@@ -39,7 +40,7 @@ Route::group(['middleware' => 'auth'], function () {
 		Route::get('remove/{id}', ['as' => 'pages.remove', 'uses' => 'App\Http\Controllers\PageController@deleteResults']);
 		Route::post('results',['as'=>'pages.icons','uses' => 'App\Http\Controllers\StudentsController@upload']);  //line for uploading file with data set
 		Route::get('typography', ['as' => 'pages.typography', 'uses' => 'App\Http\Controllers\PageController@typography']);
-		
+
 });
 
 Route::group(['middleware' => 'auth'], function () {
@@ -48,4 +49,4 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'App\Http\Controllers\ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'App\Http\Controllers\ProfileController@password']);
 });
-
+Route::get('/chart_01', [Chart_01Controller::class, 'lineChart']);

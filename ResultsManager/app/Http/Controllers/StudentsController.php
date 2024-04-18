@@ -9,21 +9,21 @@ use Illuminate\Support\Facades\Log;
 
 class StudentsController extends Controller
 {
-    
+
 
 
    public function upload(Request $request)
     {
         // Get file
-        
+
         $upload = $request->file('upload-file');
         $filePath = $upload->getRealPath();
-        
-        
+
+
         // Open and read the file
         $file = fopen($filePath, 'r');
-            
-       
+
+
 
         // Read the CSV header
         $csvHeader = fgetcsv($file);
@@ -49,7 +49,7 @@ class StudentsController extends Controller
             $student->sst = $data['sst'];
             $student->science = $data['science'];
             $student->maths = $data['maths'];
-           
+
 
             // Save the stundent record
             $student->save();
@@ -65,7 +65,7 @@ class StudentsController extends Controller
     {
         $tableColumns = [
             'name', 'english', 'sst', 'maths', 'science'
-        ]; 
+        ];
 
         $mapping = [];
         foreach ($csvHeaders as $csvHeader) {
@@ -80,13 +80,4 @@ class StudentsController extends Controller
 
         return $mapping;
     }
-
-
-
-
-
-
-
-
-
 }
